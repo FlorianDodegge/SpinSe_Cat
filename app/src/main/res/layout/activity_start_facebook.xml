@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ff000000">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Herzlich Willkommen zu"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="#ffffffff" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/imageView"
+        android:contentDescription="Cat"
+        android:src="@drawable/cat"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="#SpinSeCat"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffffff" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/com_facebook_login_activity_layout"
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:id="@+id/include" />
+
+    <android.gesture.GestureOverlayView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gestureOverlayView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginBottom="83dp"
+        android:layout_alignLeft="@+id/include"
+        android:layout_alignStart="@+id/include"></android.gesture.GestureOverlayView>
+
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.facebook.widget.LoginButton"
+        android:id="@+id/view"
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
