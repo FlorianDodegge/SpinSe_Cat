@@ -63,6 +63,6 @@
         class="com.facebook.widget.LoginButton"
         android:id="@+id/view"
         android:layout_below="@+id/include"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
