@@ -1,37 +1,41 @@
-/*
 package com.example.floriandodegge.spinsecat;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
-import com.facebook.*;
-import com.facebook.model.*;
 
 
-public class MainActivity  extends FragmentActivity {
+public class MainActivity extends Activity {
 
     private ImageView img;
     private GestureDetector gd;
-    private float xDown, xUp, yDown, yUp, deltaX, deltaY, rotation;
+    private float xDown, xUp, yDown, yUp, deltaX, deltaY;
     private Animation rotationRight, rotationLeft;
     private int minSwipeDelta;        //min Distanz
-    private MainFragment mainFragment;
+    private int randomID;       //Randomzahl für Datenbank ID      //Todo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activitiy_facebook_post);
+        setContentView(R.layout.sauf_di_zua);
 
-        img = (ImageView) findViewById(R.id.image);
+        ActionBar actionbar = getActionBar();
+        actionbar.hide();
+
+        img = (ImageView) findViewById(R.id.imageView);
 
         rotationRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right);
         rotationLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.left);
@@ -40,19 +44,6 @@ public class MainActivity  extends FragmentActivity {
 
         ViewConfiguration config = ViewConfiguration.get(this);         //für Standardkonfigurationen (Timeouts, Größen, Distanzen)
         minSwipeDelta = config.getScaledPagingTouchSlop();              //Distanz in Pixel
-
-//        //Facebook Login
-//        if (savedInstanceState == null) {
-//            // Add the fragment on initial activity setup
-//            mainFragment = new MainFragment();
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .add(android.R.id.content, mainFragment)
-//                    .commit();
-//        } else {
-//            // Or set the fragment from restored state info
-//            mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(android.R.id.content);
-//        }
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -82,9 +73,13 @@ public class MainActivity  extends FragmentActivity {
                             Log.i("SWIPE", "right");
                             img.startAnimation(rotationRight);
 
+                            randomID();
+
                         } else {
                             Log.i("SWIPE", "left");
                             img.startAnimation(rotationLeft);
+
+                            randomID();
                         }
                     }
                     result = true;
@@ -92,9 +87,13 @@ public class MainActivity  extends FragmentActivity {
                     if (deltaY < 0) {
                         Log.i("SWIPE", "left");
                         img.startAnimation(rotationLeft);
+
+                        randomID();
                     } else {
                         Log.i("SWIPE", "right");
                         img.startAnimation(rotationRight);
+
+                        randomID();
                     }
                 }
 
@@ -103,64 +102,11 @@ public class MainActivity  extends FragmentActivity {
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.start_activitiy, menu);
-        return true;
-    }
+    public int randomID(){
+        randomID = (int) ((Math.random() * 10))+1;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+        Log.i("RANDOM", "randomID = " + randomID);
 
-
-}
-
-*/
-package com.example.floriandodegge.spinsecat;
-
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.Menu;
-
-import com.example.floriandodegge.spinsecat.MainFragment;
-import com.example.floriandodegge.spinsecat.R;
-
-public class MainActivity extends FragmentActivity {
-
-    private MainFragment mainFragment;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-        if (savedInstanceState == null) {
-            // Add the fragment on initial activity setup
-            mainFragment = new MainFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(android.R.id.content, mainFragment)
-                    .commit();
-        } else {
-            // Or set the fragment from restored state info
-            mainFragment = (MainFragment) getSupportFragmentManager()
-                    .findFragmentById(android.R.id.content);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.start_activitiy, menu);
-        return true;
+        return randomID;
     }
 }
