@@ -37,32 +37,4 @@
         android:layout_centerHorizontal="true"
         android:background="#ffffffff" />
 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/com_facebook_login_activity_layout"
-        android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:id="@+id/include" />
-
-    <android.gesture.GestureOverlayView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gestureOverlayView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginBottom="83dp"
-        android:layout_alignLeft="@+id/include"
-        android:layout_alignStart="@+id/include"></android.gesture.GestureOverlayView>
-
-    <view
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        class="com.facebook.widget.LoginButton"
-        android:id="@+id/view"
-        android:layout_below="@+id/include"
-        android:layout_centerHorizontal="true"/>
-
 </RelativeLayout>

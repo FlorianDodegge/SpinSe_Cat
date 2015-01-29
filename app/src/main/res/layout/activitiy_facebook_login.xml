@@ -37,48 +37,33 @@
         android:layout_centerHorizontal="true"
         android:background="#ffffffff" />
 
-    <EditText
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:id="@+id/editText"
+        layout="@layout/com_facebook_login_activity_layout"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:background="#ffffffff" />
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:id="@+id/include" />
 
-    <Button
+    <android.gesture.GestureOverlayView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button"
-        android:layout_below="@+id/editText2"
+        android:id="@+id/gestureOverlayView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginBottom="83dp"
+        android:layout_alignLeft="@+id/include"
+        android:layout_alignStart="@+id/include"></android.gesture.GestureOverlayView>
+
+
+    <com.facebook.widget.LoginButton
+        android:id="@+id/authButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/gestureOverlayView"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Login with Facebook"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:background="#ffffffff" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Password"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:background="#ffffffff"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginTop="10dp"/>
 
 </RelativeLayout>
