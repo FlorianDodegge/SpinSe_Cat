@@ -5,10 +5,10 @@ package com.example.floriandodegge.spinsecat;
  */
 public class Post {
     // Labels table name
-    public static final String TABLE = "Post";
+    public static final String TABLE = "Posts";
 
     // Labels Table Columns names
-    public static final String KEY_ID = "id";
+    public static final String KEY_ID = "ID";
     public static final String KEY_name = "name";
     public static final String KEY_description = "description";
     public static final String KEY_link = "link";

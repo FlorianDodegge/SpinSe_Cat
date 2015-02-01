@@ -66,6 +66,7 @@ public class MainActivity extends FragmentActivity {
     private TextView textBelow;
     private TextView textView;
     private TextView drinkoMeterView;
+    private int randomId;
 
 
     private enum PendingAction {
@@ -203,19 +204,7 @@ public class MainActivity extends FragmentActivity {
         // Can we present the share dialog for photos?
 
     }
-//
-//    public String getDbText() {
-//        //max Zahl für Db abfragen
-//        int high = 10;
-//        int low = 1;
-//      int random = (int) Math.random()*(high - low) + low;
-//
-//       // DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-//        //Cursor c = db.getQueryResult("SELECT Posts FROM Posts Where ID = " + random + ";");
-//        //checken ob ID 1 passt
-//       //return c.getString(1);
-//        return null;
-//    }
+
 
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -405,10 +394,17 @@ public class MainActivity extends FragmentActivity {
     }
 
     private FacebookDialog.ShareDialogBuilder createShareDialogBuilderForLink() {
+
+        //test ID
+        randomId = 1;
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+
+        Post post = db.getPostById(randomId);
+
         return new FacebookDialog.ShareDialogBuilder(this)
-                .setName("Hello SpinSeCat Player")
-                .setDescription("")
-                .setLink("www.spinsecat.com");
+                .setName(post.name)
+                .setDescription(post.description)
+                .setLink(post.link);
 
     }
 

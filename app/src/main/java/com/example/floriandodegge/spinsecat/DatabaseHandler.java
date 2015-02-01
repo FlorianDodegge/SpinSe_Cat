@@ -40,18 +40,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Post getPostById(int Id){
-        SQLiteOpenHelper dbHelper = null;
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+    public  Post getPostById(int Id){
+       // SQLiteOpenHelper dbHelper= null;
 
-        String selectQuery =  "SELECT  " +
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery =  "SELECT " +
                 Post.KEY_ID + "," +
                 Post.KEY_name + "," +
                 Post.KEY_description + "," +
                 Post.KEY_link +
                 " FROM " + Post.TABLE
                 + " WHERE " +
-                Post.KEY_ID + "=?";// It's a good practice to use parameter ?, instead of concatenate string
+                Post.KEY_ID + "="+Id;// It's a good practice to use parameter ?, instead of concatenate string
 
         Post post = new Post();
 
