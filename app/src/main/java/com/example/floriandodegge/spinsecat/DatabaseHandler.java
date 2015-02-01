@@ -43,23 +43,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public  Post getPostById(int Id){
+    public  Post getPostById(int ID){
        // SQLiteOpenHelper dbHelper= null;
 
         SQLiteDatabase db = getReadableDatabase();
 
-        String selectQuery =  "SELECT " +
+        /*String selectQuery =  "SELECT " +
                 Post.KEY_ID + "," +
                 Post.KEY_name + "," +
                 Post.KEY_description + "," +
                 Post.KEY_link +
                 " FROM " + Post.TABLE
                 + " WHERE " +
-                Post.KEY_ID + "="+Id;// It's a good practice to use parameter ?, instead of concatenate string
+                Post.KEY_ID + "="+ID;// It's a good practice to use parameter ?, instead of concatenate string*/
 
         Post post = new Post();
 
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(Id) } );
+        Cursor cursor = db.rawQuery("SELECT name, description, link FROM Posts WHERE ID = " + ID, new String[] { String.valueOf(ID) } );
 
         if (cursor.moveToFirst()) {
             do {
