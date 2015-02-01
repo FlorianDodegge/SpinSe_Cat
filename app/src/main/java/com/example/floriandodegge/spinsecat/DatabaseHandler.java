@@ -19,7 +19,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Posts (ID int, name String, description String, link String);");
+
+        String CREATE_TABLE_POSTS = "CREATE TABLE Posts (ID int, name String, description String, link String);";
+
+        db.execSQL(CREATE_TABLE_POSTS);
 
         db.execSQL("INSERT INTO Posts VALUES (1, 'Meine Empfehlung für euch', 'Nur das Beste für meine Freunde!!', 'http://www.amorelie.at/sexspielzeug/dildos/the-boss-stub-black/');");
         db.execSQL("INSERT INTO Posts VALUES (2, 'Solltet ihr mal spielen :)', 'SpinSeCat - das beste Trinkspiel aller Zeiten', 'http://www.spinsecat.com/');");
