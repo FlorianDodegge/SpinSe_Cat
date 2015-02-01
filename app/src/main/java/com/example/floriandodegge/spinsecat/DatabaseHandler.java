@@ -43,6 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Post getPostById(int Id){
         SQLiteOpenHelper dbHelper = null;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+
         String selectQuery =  "SELECT  " +
                 Post.KEY_ID + "," +
                 Post.KEY_name + "," +
