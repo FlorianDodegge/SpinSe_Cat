@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SpinSeCat2.iml" filepath="$PROJECT_DIR$/SpinSeCat2.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpinSeCat3.iml" filepath="$PROJECT_DIR$/SpinSeCat3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpinSe_Cat.iml" filepath="$PROJECT_DIR$/SpinSe_Cat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebook/facebook.iml" filepath="$PROJECT_DIR$/facebook/facebook.iml" />
     </modules>
