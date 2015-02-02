@@ -1,9 +1,11 @@
 package com.example.floriandodegge.spinsecat;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by FlorianDodegge on 28.01.15.
@@ -35,6 +37,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //db.execSQL("INSERT INTO Posts VALUES (9, '', '', '');");
         //db.execSQL("INSERT INTO Posts VALUES (10, '', '', '');");
 
+        ContentValues values = new ContentValues();
+        values.put("ID", 1);
+        values.put("name", "Meine Empfehlung für euch");
+        values.put("description", "Nur das Beste für meine Freunde!!");
+        values.put("link", "http://www.amorelie.at/sexspielzeug/dildos/the-boss-stub-black");
+        long insertId = db.insert("Posts", null,
+                values);
+
+        Log.i("insertID", "id: " + insertId);
     }
 
     @Override
@@ -43,29 +54,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public  Post getPostById(int ID){
-       // SQLiteOpenHelper dbHelper= null;
-
+    public Post getPostById(int ID) {
         SQLiteDatabase db = getReadableDatabase();
 
-        /*String selectQuery =  "SELECT " +
-                Post.KEY_ID + "," +
-                Post.KEY_name + "," +
-                Post.KEY_description + "," +
-                Post.KEY_link +
-                " FROM " + Post.TABLE
-                + " WHERE " +
-                Post.KEY_ID + "="+ID;// It's a good practice to use parameter ?, instead of concatenate string*/
 
         Post post = new Post();
+        String selection = Post.KEY_ID + "=?";
+        String[] selectionArgs = new String[1];
+        selectionArgs[0] = String.valueOf(ID);
+        String columns = Post.TABLE;
+        String[] projection = {
+                Post.KEY_name,
+                Post.KEY_description,
+                Post.KEY_link
+        };
 
-        Cursor cursor = db.rawQuery("SELECT name, description, link FROM Posts WHERE ID = " + ID, new String[] { String.valueOf(ID) } );
+        Cursor cursor = db.query(columns,   // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                 // The sort order
+        );
+
 
         if (cursor.moveToFirst()) {
             do {
-                post.ID = cursor.getInt(cursor.getColumnIndex(Post.KEY_ID));
+
                 post.name = cursor.getString(cursor.getColumnIndex(Post.KEY_name));
-                post.description  = cursor.getString(cursor.getColumnIndex(Post.KEY_description));
+                post.description = cursor.getString(cursor.getColumnIndex(Post.KEY_description));
                 post.link = cursor.getString(cursor.getColumnIndex(Post.KEY_link));
 
             } while (cursor.moveToNext());

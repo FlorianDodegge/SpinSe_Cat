@@ -148,18 +148,18 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View view) {
                 drinkoMeter++;
 
-                drinkoMeterView.setText("DrinkoMeter Pegel: "+drinkoMeter);
-                if(drinkoMeter == 5){
-                    Toast.makeText(getApplicationContext(), "Heut läufts bei dir!", Toast.LENGTH_SHORT).show();
+                drinkoMeterView.setText("DrinkoMeter Pegel: " + drinkoMeter);
+                if (drinkoMeter == 5) {
+                    Toast.makeText(getApplicationContext(), "Heut läufts bei dir!", Toast.LENGTH_LONG).show();
                 }
-                if(drinkoMeter == 10){
-                    Toast.makeText(getApplicationContext(), "Junge, Autofahren ist heut gestorben!", Toast.LENGTH_SHORT).show();
+                if (drinkoMeter == 10) {
+                    Toast.makeText(getApplicationContext(), "Junge, Autofahren ist heut gestorben!", Toast.LENGTH_LONG).show();
                 }
-                if(drinkoMeter == 15){
-                    Toast.makeText(getApplicationContext(), "Wenn das dein Opa noch sehen könnte!", Toast.LENGTH_SHORT).show();
+                if (drinkoMeter == 15) {
+                    Toast.makeText(getApplicationContext(), "Wenn das dein Opa noch sehen könnte!", Toast.LENGTH_LONG).show();
                 }
-                if(drinkoMeter == 20){
-                    Toast.makeText(getApplicationContext(), "Das machst du nicht zum ersten Mal, was!", Toast.LENGTH_SHORT).show();
+                if (drinkoMeter == 20) {
+                    Toast.makeText(getApplicationContext(), "Das machst du nicht zum ersten Mal, was!", Toast.LENGTH_LONG).show();
                 }
 
             }
