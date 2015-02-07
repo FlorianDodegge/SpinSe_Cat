@@ -46,7 +46,7 @@ public class MainActivity extends FragmentActivity {
 
     private ImageView img;
     private GestureDetector gd;
-    private float xDown, xUp, yDown, yUp, deltaX, deltaY, rotation;
+    private float xDown, xUp, yDown, yUp, deltaX, deltaY;
     private Animation rotationRight, rotationLeft;
     private int minSwipeDelta;        //min Distanz
     public int drinkoMeter = 0;
@@ -101,7 +101,10 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        img = (ImageView) findViewById(R.id.image);
+        setContentView(R.layout.activitiy_facebook_post);
+
+        img = (ImageView) findViewById(R.id.imageView);
+
         ActionBar actionbar = getActionBar();
         actionbar.hide();
 
@@ -232,10 +235,11 @@ public class MainActivity extends FragmentActivity {
                         if (deltaX < 0) {
                             Log.i("SWIPE", "right");
                             img.startAnimation(rotationRight);
-
+                            randomId();
                         } else {
                             Log.i("SWIPE", "left");
                             img.startAnimation(rotationLeft);
+                            randomId();
                         }
                     }
                     result = true;
@@ -243,9 +247,11 @@ public class MainActivity extends FragmentActivity {
                     if (deltaY < 0) {
                         Log.i("SWIPE", "left");
                         img.startAnimation(rotationLeft);
+                        randomId();
                     } else {
                         Log.i("SWIPE", "right");
                         img.startAnimation(rotationRight);
+                        randomId();
                     }
                 }
 
@@ -396,7 +402,7 @@ public class MainActivity extends FragmentActivity {
     private FacebookDialog.ShareDialogBuilder createShareDialogBuilderForLink() {
 
         //test ID
-        randomId = 1;
+        //randomId = 1;
         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
         Post post = db.getPostById(randomId);
@@ -465,6 +471,14 @@ public class MainActivity extends FragmentActivity {
             pendingAction = action;
             handlePendingAction();
         }
+    }
+
+    public int randomId(){
+        randomId = (int) ((Math.random() * 10))+1;
+
+        Log.i("RANDOM", "randomID = " + randomId);
+
+        return randomId;
     }
 
 }

@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'MyAndroidKey'
             keyPassword 'heidemarie'
-            storeFile file('/home/manuel/Android studioprojects/keystores/android.jks')
+            storeFile file('/Users/Bernhard/GitHub/keystores/android.jks')
             storePassword 'heidemarie'
         }
     }
@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile project(':facebook')
 }

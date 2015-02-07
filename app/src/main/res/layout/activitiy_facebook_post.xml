@@ -99,5 +99,12 @@
         android:layout_above="@+id/postStatusUpdateButton"
         android:layout_centerHorizontal="true" />
 
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toRightOf="@+id/greeting"
+        android:layout_toEndOf="@+id/greeting"></GridLayout>
+
 
 </RelativeLayout>
