@@ -101,23 +101,10 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activitiy_facebook_post);
-
-        img = (ImageView) findViewById(R.id.imageView);
-
         ActionBar actionbar = getActionBar();
         actionbar.hide();
 
-        rotationRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right);
-        rotationLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left);
-
-        gd = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener());
-
-        ViewConfiguration config = ViewConfiguration.get(this);         //für Standardkonfigurationen (Timeouts, Größen, Distanzen)
-        minSwipeDelta = config.getScaledPagingTouchSlop();              //Distanz in Pixel
-
         //FB
-
         uiHelper = new UiLifecycleHelper(this, callback);
         uiHelper.onCreate(savedInstanceState);
 
@@ -206,6 +193,16 @@ public class MainActivity extends FragmentActivity {
                 FacebookDialog.ShareDialogFeature.SHARE_DIALOG);
         // Can we present the share dialog for photos?
 
+        //Catspin
+        img = (ImageView) findViewById(R.id.imageViewCat);
+
+        rotationRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotation_right);
+        rotationLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotation_left);
+
+        gd = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener());
+
+        ViewConfiguration config = ViewConfiguration.get(this);         //für Standardkonfigurationen (Timeouts, Größen, Distanzen)
+        minSwipeDelta = config.getScaledPagingTouchSlop();              //Distanz in Pixel
     }
 
 

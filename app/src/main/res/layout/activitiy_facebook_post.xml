@@ -16,14 +16,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textView"
         android:textColor="#ffffffff"
-        android:layout_above="@+id/imageView"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:layout_above="@+id/imageViewCat"
+        android:layout_alignRight="@+id/imageViewCat"
+        android:layout_alignEnd="@+id/imageViewCat" />
 
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewCat"
         android:contentDescription="Cat"
         android:src="@drawable/cat"
         android:layout_centerVertical="true"
@@ -46,8 +46,8 @@
         android:text="Post"
         android:layout_gravity="center_horizontal"
         android:layout_alignTop="@+id/drinkUpdateButton"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView" />
+        android:layout_alignLeft="@+id/imageViewCat"
+        android:layout_alignStart="@+id/imageViewCat" />
     <Button
         android:id="@+id/drinkUpdateButton"
         android:layout_width="wrap_content"
@@ -77,8 +77,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/login_button"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_toRightOf="@+id/imageViewCat"
+        android:layout_toEndOf="@+id/imageViewCat" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textBelow"
         android:textColor="#ffffffff"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/imageViewCat"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -102,7 +102,7 @@
     <GridLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignBottom="@+id/imageViewCat"
         android:layout_toRightOf="@+id/greeting"
         android:layout_toEndOf="@+id/greeting"></GridLayout>
 
