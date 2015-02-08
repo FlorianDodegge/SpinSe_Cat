@@ -31,4 +31,14 @@
         android:layout_alignEnd="@+id/imageViewCatStart"
         android:textColor="#ffffffff" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Lasset die Spiele beginnen"
+        android:id="@+id/textView"
+        android:layout_below="@+id/imageViewCatStart"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff"/>
+
 </RelativeLayout>

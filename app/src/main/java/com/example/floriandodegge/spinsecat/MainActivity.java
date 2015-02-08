@@ -69,9 +69,8 @@ public class MainActivity extends FragmentActivity {
     private boolean canPresentShareDialog;
     private static final String PERMISSION = "publish_actions";
     private TextView textBelow;
-    private TextView textView;
     private TextView drinkoMeterView;
-    private int randomId;
+    private int randomId=0;
     private Point size;
     private WindowManager wm;
     private int screenWidth, screenHeight;
@@ -138,28 +137,30 @@ public class MainActivity extends FragmentActivity {
         greeting = (TextView) findViewById(R.id.greeting);
 
         textBelow = (TextView) findViewById(R.id.textBelow);
-        textView = (TextView) findViewById(R.id.textView);
         drinkoMeterView = (TextView) findViewById(R.id.drinkoMeter);
 
         drinkUpdateButton = (Button) findViewById(R.id.drinkUpdateButton);
         drinkUpdateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                drinkoMeter++;
+                if (randomId != 0) {
+                    drinkoMeter++;
 
-                drinkoMeterView.setText("DrinkoMeter Pegel: " + drinkoMeter);
-                if (drinkoMeter == 5) {
-                    Toast.makeText(getApplicationContext(), "Heut läufts bei dir!", Toast.LENGTH_LONG).show();
-                }
-                if (drinkoMeter == 10) {
-                    Toast.makeText(getApplicationContext(), "Junge, Autofahren ist heut gestorben!", Toast.LENGTH_LONG).show();
-                }
-                if (drinkoMeter == 15) {
-                    Toast.makeText(getApplicationContext(), "Wenn das dein Opa noch sehen könnte!", Toast.LENGTH_LONG).show();
-                }
-                if (drinkoMeter == 20) {
-                    Toast.makeText(getApplicationContext(), "Das machst du nicht zum ersten Mal, was!", Toast.LENGTH_LONG).show();
-                }
+                    drinkoMeterView.setText("DrinkoMeter Pegel: " + drinkoMeter);
+                    if (drinkoMeter == 5) {
+                        Toast.makeText(getApplicationContext(), "Heut läufts bei dir!", Toast.LENGTH_LONG).show();
+                    }
+                    if (drinkoMeter == 10) {
+                        Toast.makeText(getApplicationContext(), "Junge, Autofahren ist heut gestorben!", Toast.LENGTH_LONG).show();
+                    }
+                    if (drinkoMeter == 15) {
+                        Toast.makeText(getApplicationContext(), "Wenn das dein Opa noch sehen könnte!", Toast.LENGTH_LONG).show();
+                    }
+                    if (drinkoMeter == 20) {
+                        Toast.makeText(getApplicationContext(), "Das machst du nicht zum ersten Mal, was!", Toast.LENGTH_LONG).show();
+                    }
 
+                } else
+                    Toast.makeText(getApplicationContext(), "Spin mich! Dann darfst du trinken ;)", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -169,7 +170,11 @@ public class MainActivity extends FragmentActivity {
         postStatusUpdateButton = (Button) findViewById(R.id.postStatusUpdateButton);
         postStatusUpdateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                onClickPostStatusUpdate();
+                if(randomId!=0) {
+                    onClickPostStatusUpdate();
+                }
+                else Toast.makeText(getApplicationContext(), "Spin mich! Jetzt!", Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -457,14 +462,14 @@ public class MainActivity extends FragmentActivity {
         if (enableButtons && user != null) {
             profilePictureView.setProfileId(user.getId());
             greeting.setText(getString(R.string.hello_user, user.getFirstName()));
-            textBelow.setText("Spin se Cat!");
-            textView.setText("Lass die Spiele beginnen");
+            textBelow.setText("Du kannst nur gewinnen!");
+
 
         } else {
             profilePictureView.setProfileId(null);
             greeting.setText(null);
-            textView.setText("Willkommen bei Spin Se Cat");
-            textBelow.setText("Bitte bei Facebook einloggen!");
+
+            greeting.setText("Bitte log dich ein!");
         }
         postStatusUpdateButton.setEnabled(enableButtons || canPresentShareDialog);
 
@@ -514,8 +519,6 @@ public class MainActivity extends FragmentActivity {
 
     private FacebookDialog.ShareDialogBuilder createShareDialogBuilderForLink() {
 
-        //test ID
-        //randomId = 1;
         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
         Post post = db.getPostById(randomId);

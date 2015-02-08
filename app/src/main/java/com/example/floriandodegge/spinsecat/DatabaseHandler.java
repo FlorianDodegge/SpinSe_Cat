@@ -31,11 +31,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Posts VALUES (3, 'Für eure nächste Reise', 'Mein neuer Allrounder', 'http://www.amazon.de/s/ref=nb_sb_noss_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dtoys&field-keywords=ORIGINAL%20OstrichPillow%20%C2%AE%20Powernapping%20Kissen%20Strau%C3%9Fen-Kissen%20Ostrich%20Pillow%20Reisekissen');");
         db.execSQL("INSERT INTO Posts VALUES (4, 'Meine Frage an euch', 'Soll ich meinen Mann verleihen?', 'http://forum.gofeminin.de/forum/couple2/__f138670_couple2-Soll-ich-meinen-Mann-ausleihen.html');");
         db.execSQL("INSERT INTO Posts VALUES (5, 'Meine Katzen spielen auch gerne #SpinSeCat', 'Meine Katzen 2.0', 'https://www.youtube.com/watch?v=KZYNap91JWQ');");
-        //db.execSQL("INSERT INTO Posts VALUES (6, '', '', '');");
-        //db.execSQL("INSERT INTO Posts VALUES (7, '', '', '');");
-        //db.execSQL("INSERT INTO Posts VALUES (8, '', '', '');");
-        //db.execSQL("INSERT INTO Posts VALUES (9, '', '', '');");
-        //db.execSQL("INSERT INTO Posts VALUES (10, '', '', '');");
+        db.execSQL("INSERT INTO Posts VALUES (6, 'Mein neues Spielzeug', 'Harte Arbeit zahlt sich aus!', 'http://www.dacia.at/dacia-modellpalette/logan-mcv/');");
+        db.execSQL("INSERT INTO Posts VALUES (7, 'Leute bitte TeileN!!!!1111', 'Hiermit widerspreche ich den Facebook AGBs!', 'http://dietagespresse.com/neue-facebook-agbs-mark-zuckerberg-hat-anrecht-auf-erstgeborenen-eines-jeden-users/');");
+        db.execSQL("INSERT INTO Posts VALUES (8, 'Kennt ihr das auch?', 'Nicht nur ein weibliches Problem..', 'http://www.brigitte.de/liebe/sex-flirten/wieso-kann-ich-beim-sex-nicht-kommen-1217767/');");
+        db.execSQL("INSERT INTO Posts VALUES (9, 'Top Empfehlung!', 'Problemlos und geil!', 'https://www.youtube.com/watch?v=ZIDkDwKS_70');");
+        db.execSQL("INSERT INTO Posts VALUES (10, 'Ich hab es immer schon gewusst', '#Massephase', 'https://www.freitag.de/autoren/wolfram-heinrich/vom-salat-schrumpft-der-bizeps');");
 
         ContentValues values = new ContentValues();
         values.put("ID", 1);

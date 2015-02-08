@@ -10,15 +10,6 @@
     tools:context=".MainActivity"
     android:background="#ff000000">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView"
-        android:textColor="#ffffffff"
-        android:layout_above="@+id/imageViewCat"
-        android:layout_alignRight="@+id/imageViewCat"
-        android:layout_alignEnd="@+id/imageViewCat" />
 
     <ImageView
         android:layout_width="250dp"
@@ -36,27 +27,40 @@
         android:text="Hallo XY,"
         android:id="@+id/greeting"
         android:textColor="#ffffffff"
-        android:layout_above="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/imageViewCat"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"/>
 
     <Button
         android:id="@+id/postStatusUpdateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Post"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignTop="@+id/drinkUpdateButton"
-        android:layout_alignLeft="@+id/imageViewCat"
-        android:layout_alignStart="@+id/imageViewCat" />
+        android:textColor="#FF0066"
+        android:textSize="25sp"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@drawable/corner"
+        android:shadowColor="#000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <Button
         android:id="@+id/drinkUpdateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Drink"
-        android:layout_gravity="center_horizontal"
+        android:textColor="#FF0066"
+        android:textSize="25sp"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@drawable/corner"
+        android:shadowColor="#000000"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignRight="@+id/profilePicture"
+        android:layout_alignEnd="@+id/profilePicture" />
 
     <com.facebook.widget.LoginButton
         android:id="@+id/login_button"
@@ -87,7 +91,8 @@
         android:id="@+id/textBelow"
         android:textColor="#ffffffff"
         android:layout_below="@+id/imageViewCat"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -96,7 +101,7 @@
         android:text="DrinkoMeter Pegel: 0 "
         android:id="@+id/drinkoMeter"
         android:textColor="#ffffffff"
-        android:layout_above="@+id/postStatusUpdateButton"
+        android:layout_below="@+id/textBelow"
         android:layout_centerHorizontal="true" />
 
     <GridLayout
