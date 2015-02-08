@@ -3,16 +3,13 @@ package com.example.floriandodegge.spinsecat;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,8 +52,14 @@ public class MainActivity extends FragmentActivity {
     private Animation rotationRight, rotationLeft;
     private int minSwipeDelta;        //min Distanz
     public int drinkoMeter = 0;
+    private TextView textBelow;
+    private TextView drinkoMeterView;
+    private int randomId = 0;
+    private Point size;
+    private WindowManager wm;
+    private int screenWidth, screenHeight;
 
-    //FB
+    //Facebook
     private final String PENDING_ACTION_BUNDLE_KEY = "com.example.floriandodegge.spinsecat,PendingAction";
     private Button postStatusUpdateButton;
     private Button drinkUpdateButton;
@@ -68,12 +71,6 @@ public class MainActivity extends FragmentActivity {
     private GraphUser user;
     private boolean canPresentShareDialog;
     private static final String PERMISSION = "publish_actions";
-    private TextView textBelow;
-    private TextView drinkoMeterView;
-    private int randomId=0;
-    private Point size;
-    private WindowManager wm;
-    private int screenWidth, screenHeight;
 
 
     private enum PendingAction {
@@ -144,6 +141,10 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View view) {
                 if (randomId != 0) {
                     drinkoMeter++;
+                    //Zurücksetzen der ID damit Button abfragen greifen
+                    randomId = 0;
+                    textBelow.setText("Neue Runde neues Glück!");
+
 
                     drinkoMeterView.setText("DrinkoMeter Pegel: " + drinkoMeter);
                     if (drinkoMeter == 5) {
@@ -170,10 +171,14 @@ public class MainActivity extends FragmentActivity {
         postStatusUpdateButton = (Button) findViewById(R.id.postStatusUpdateButton);
         postStatusUpdateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if(randomId!=0) {
+                if (randomId != 0) {
                     onClickPostStatusUpdate();
-                }
-                else Toast.makeText(getApplicationContext(), "Spin mich! Jetzt!", Toast.LENGTH_LONG).show();
+
+                    //Zurücksetzen der Id damit die Button Abfragen greifen
+                    randomId = 0;
+                    textBelow.setText("Neue Runde neues Glück!");
+                } else
+                    Toast.makeText(getApplicationContext(), "Spin mich! Jetzt!", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -250,10 +255,10 @@ public class MainActivity extends FragmentActivity {
                 deltaX = xUp - xDown;
                 deltaY = yUp - yDown;
 
-                if(yDown <= (screenHeight/2)) {
+                if (yDown <= (screenHeight / 2)) {
                     Log.i("BILDSCHRIMHÄLFTE", "oben");
 
-                    if(xDown >= (screenWidth/2)) {
+                    if (xDown >= (screenWidth / 2)) {
                         Log.i("BILDSCHIRMHÄLFTE", "rechts");
 
                         if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
@@ -314,7 +319,7 @@ public class MainActivity extends FragmentActivity {
                     }
                 } else {
                     Log.i("BILDSCHRIMHÄLFTE", "unten");
-                    if(xDown < (screenWidth/2)) {
+                    if (xDown < (screenWidth / 2)) {
                         Log.i("BILDSCHIRMHÄLFTE", "links");
 
                         if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
@@ -462,7 +467,7 @@ public class MainActivity extends FragmentActivity {
         if (enableButtons && user != null) {
             profilePictureView.setProfileId(user.getId());
             greeting.setText(getString(R.string.hello_user, user.getFirstName()));
-            textBelow.setText("Du kannst nur gewinnen!");
+            textBelow.setText("Spin mich dann gehts los!");
 
 
         } else {
@@ -589,9 +594,19 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public int randomId(){
-        randomId = (int) ((Math.random() * 10))+1;
+    public int randomId() {
+        if (randomId == 0) {
+            randomId = (int) ((Math.random() * 10)) + 1;
 
+        } else {
+            int randomIdOld = randomId;
+            randomId = (int) ((Math.random() * 10)) + 1;
+            while (randomIdOld == randomId) {
+                randomId = (int) ((Math.random() * 10)) + 1;
+            }
+        }
+
+        textBelow.setText("Posten oder Trinken?");
         Log.i("RANDOM", "randomID = " + randomId);
 
         return randomId;
