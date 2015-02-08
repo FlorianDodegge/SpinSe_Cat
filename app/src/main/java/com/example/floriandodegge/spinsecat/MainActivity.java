@@ -3,12 +3,16 @@ package com.example.floriandodegge.spinsecat;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -67,6 +72,9 @@ public class MainActivity extends FragmentActivity {
     private TextView textView;
     private TextView drinkoMeterView;
     private int randomId;
+    private Point size;
+    private WindowManager wm;
+    private int screenWidth, screenHeight;
 
 
     private enum PendingAction {
@@ -203,6 +211,17 @@ public class MainActivity extends FragmentActivity {
 
         ViewConfiguration config = ViewConfiguration.get(this);         //für Standardkonfigurationen (Timeouts, Größen, Distanzen)
         minSwipeDelta = config.getScaledPagingTouchSlop();              //Distanz in Pixel
+
+        //Displaygröße auslesen
+        size = new Point();
+        wm = getWindowManager();
+        wm.getDefaultDisplay().getSize(size);
+
+        screenWidth = size.x;
+        screenHeight = size.y;
+
+        Log.i("SCREEN", "width: " + screenWidth);
+        Log.i("SCREEN", "height: " + screenHeight);
     }
 
 
@@ -226,33 +245,130 @@ public class MainActivity extends FragmentActivity {
                 deltaX = xUp - xDown;
                 deltaY = yUp - yDown;
 
+                if(yDown <= (screenHeight/2)) {
+                    Log.i("BILDSCHRIMHÄLFTE", "oben");
 
-                if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
-                    if (Math.abs(deltaX) > minSwipeDelta) {   //Gültigkeit bzgl Standardeinstellungen prüfen
-                        if (deltaX < 0) {
-                            Log.i("SWIPE", "right");
-                            img.startAnimation(rotationRight);
-                            randomId();
-                        } else {
-                            Log.i("SWIPE", "left");
-                            img.startAnimation(rotationLeft);
-                            randomId();
+                    if(xDown >= (screenWidth/2)) {
+                        Log.i("BILDSCHIRMHÄLFTE", "rechts");
+
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
+                            if (Math.abs(deltaX) > minSwipeDelta) {   //Gültigkeit bzgl Standardeinstellungen prüfen
+                                if (deltaX < 0) {
+                                    Log.i("SWIPE", "left");
+                                    img.startAnimation(rotationLeft);
+                                    randomId();
+                                } else {
+                                    Log.i("SWIPE", "right");
+                                    img.startAnimation(rotationRight);
+                                    randomId();
+                                }
+                            }
+                            result = true;
+                        } else if (Math.abs(deltaY) > minSwipeDelta) {   //vertikaler Swipe
+                            if (deltaY < 0) {
+                                Log.i("SWIPE", "left");
+                                img.startAnimation(rotationLeft);
+                                randomId();
+                            } else {
+                                Log.i("SWIPE", "right");
+                                img.startAnimation(rotationRight);
+                                randomId();
+                            }
                         }
-                    }
-                    result = true;
-                } else if (Math.abs(deltaY) > minSwipeDelta) {   //vertikaler Swipe
-                    if (deltaY < 0) {
-                        Log.i("SWIPE", "left");
-                        img.startAnimation(rotationLeft);
-                        randomId();
+
+                        break;
                     } else {
-                        Log.i("SWIPE", "right");
-                        img.startAnimation(rotationRight);
-                        randomId();
+                        Log.i("BILDSCHIRMHÄLFTE", "links");
+
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
+                            if (Math.abs(deltaX) > minSwipeDelta) {   //Gültigkeit bzgl Standardeinstellungen prüfen
+                                if (deltaX < 0) {
+                                    Log.i("SWIPE", "left");
+                                    img.startAnimation(rotationLeft);
+                                    randomId();
+                                } else {
+                                    Log.i("SWIPE", "right");
+                                    img.startAnimation(rotationRight);
+                                    randomId();
+                                }
+                            }
+                            result = true;
+                        } else if (Math.abs(deltaY) > minSwipeDelta) {   //vertikaler Swipe
+                            if (deltaY < 0) {
+                                Log.i("SWIPE", "right");
+                                img.startAnimation(rotationRight);
+                                randomId();
+                            } else {
+                                Log.i("SWIPE", "left");
+                                img.startAnimation(rotationLeft);
+                                randomId();
+                            }
+                        }
+
+                        break;
+                    }
+                } else {
+                    Log.i("BILDSCHRIMHÄLFTE", "unten");
+                    if(xDown < (screenWidth/2)) {
+                        Log.i("BILDSCHIRMHÄLFTE", "links");
+
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
+                            if (Math.abs(deltaX) > minSwipeDelta) {   //Gültigkeit bzgl Standardeinstellungen prüfen
+                                if (deltaX < 0) {
+                                    Log.i("SWIPE", "right");
+                                    img.startAnimation(rotationRight);
+                                    randomId();
+                                } else {
+                                    Log.i("SWIPE", "left");
+                                    img.startAnimation(rotationLeft);
+                                    randomId();
+                                }
+                            }
+                            result = true;
+                        } else if (Math.abs(deltaY) > minSwipeDelta) {   //vertikaler Swipe
+                            if (deltaY < 0) {
+                                Log.i("SWIPE", "right");
+                                img.startAnimation(rotationRight);
+                                randomId();
+                            } else {
+                                Log.i("SWIPE", "left");
+                                img.startAnimation(rotationLeft);
+                                randomId();
+                            }
+                        }
+
+                        break;
+                    } else {
+                        Log.i("BILDSCHIMHÄLFTE", "rechts");
+
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {    //horizontaler Swipe
+                            if (Math.abs(deltaX) > minSwipeDelta) {   //Gültigkeit bzgl Standardeinstellungen prüfen
+                                if (deltaX < 0) {
+                                    Log.i("SWIPE", "right");
+                                    img.startAnimation(rotationRight);
+                                    randomId();
+                                } else {
+                                    Log.i("SWIPE", "left");
+                                    img.startAnimation(rotationLeft);
+                                    randomId();
+                                }
+                            }
+                            result = true;
+                        } else if (Math.abs(deltaY) > minSwipeDelta) {   //vertikaler Swipe
+                            if (deltaY < 0) {
+                                Log.i("SWIPE", "left");
+                                img.startAnimation(rotationLeft);
+                                randomId();
+                            } else {
+                                Log.i("SWIPE", "right");
+                                img.startAnimation(rotationRight);
+                                randomId();
+                            }
+                        }
+
+                        break;
                     }
                 }
-
-                break;
         }
         return true;
     }
